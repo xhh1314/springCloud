@@ -1,5 +1,6 @@
 package com.example.springcloud.rabbitmqtest.test;
 
+import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -22,15 +23,16 @@ public class Send {
         Thread thread4= new Thread(new MessageTest());
 
         thread1.start();
-        thread2.start();
-        thread3.start();
-        thread4.start();
+       // thread2.start();
+       // thread3.start();
+       // thread4.start();
 
     }
 }
 
 class MessageTest implements Runnable {
-    private final static String QUEUE_NAME = "hello";
+    private final static String QUEUE_NAME = "logs";
+    private final static String exchangeName = "logs";
     static ConnectionFactory factory = new ConnectionFactory();
     static Connection connection;
     static Channel channel;
@@ -40,7 +42,9 @@ class MessageTest implements Runnable {
         try {
             connection = factory.newConnection();
             channel = connection.createChannel();
-            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            channel.exchangeDeclare(exchangeName, BuiltinExchangeType.FANOUT);
+
+           // channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {
@@ -53,9 +57,9 @@ class MessageTest implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < 10000000; i++) {
+        for (int i = 0; i < 10; i++) {
             try {
-                channel.basicPublish("", QUEUE_NAME, null, (Thread.currentThread().getName()+":"+message + i).getBytes());
+                channel.basicPublish(exchangeName, "", null, (Thread.currentThread().getName()+":"+message + i).getBytes());
             } catch (IOException e) {
                 e.printStackTrace();
             }
