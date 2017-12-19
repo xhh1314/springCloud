@@ -44,3 +44,6 @@ public class Recv {
     }
 
 }
+abstract class TestTEST{
+
+}
