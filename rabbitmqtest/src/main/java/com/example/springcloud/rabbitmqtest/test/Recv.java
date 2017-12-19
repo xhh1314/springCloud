@@ -1,6 +1,7 @@
 package com.example.springcloud.rabbitmqtest.test;
 
 import com.rabbitmq.client.*;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -9,6 +10,7 @@ import java.util.concurrent.TimeoutException;
  * @author 李浩
  * @date ${DATE}
  */
+@Component
 public class Recv {
     private final static String QUEUE_NAME = "hello1";
     private final static String exchangeName = "logs";
