@@ -3,16 +3,20 @@ package com.example.springcloud.bankofchina.manage;
 public class Restful {
     public static final String OK = "ok";
     public static final String ERROR = "error";
-    private final Meta meta;
-    private final Object data;
+    private Meta meta;
+    private Object data;
 
-    Restful(Meta meta, Object data) {
+    public Restful(Meta meta, Object data) {
         this.meta = meta;
         this.data = data;
     }
 
+    public Restful() {
+    }
+
     /**
      * 成功，带数据
+     *
      * @param data
      * @return
      */
@@ -22,6 +26,7 @@ public class Restful {
 
     /**
      * 成功，带数据和消息
+     *
      * @param data
      * @param message
      * @return
@@ -32,6 +37,7 @@ public class Restful {
 
     /**
      * 成功，带默认消息ok
+     *
      * @return
      */
     public static Restful success() {

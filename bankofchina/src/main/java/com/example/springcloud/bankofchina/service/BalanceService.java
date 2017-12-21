@@ -25,11 +25,12 @@ public class BalanceService {
     private IcbcFeign icbcFeign;
 
     /**
-     *减少账户余额
-     *@date 2017/12/19
-     *@param
-     *@author lh
-     *@since
+     * 减少账户余额
+     *
+     * @param
+     * @date 2017/12/19
+     * @author lh
+     * @since
      */
     public Restful decreaseAmount(Integer id, double number) {
         BalanceDO oldBalance = balanceDao.getBalanceById(id);
@@ -43,14 +44,16 @@ public class BalanceService {
         balanceDao.save(oldBalance);
         return Restful.success();
     }
+
     /**
-     *增加账户余额
-     *@date 2017/12/19
-     *@param
-     *@author lh
-     *@since
+     * 增加账户余额
+     *
+     * @param
+     * @date 2017/12/19
+     * @author lh
+     * @since
      */
-    public Restful increaseAmount(Integer id,double number){
+    public Restful increaseAmount(Integer id, double number) {
         BalanceDO oldBalance = balanceDao.getBalanceById(id);
         if (oldBalance == null)
             return Restful.failure("账户不存在");
@@ -63,13 +66,15 @@ public class BalanceService {
 
     /**
      * 转账到工商银行的服务
+     *
      * @param balanceDO
      * @return
      */
     public Restful transferMoneyToICBC(BalanceDO balanceDO) {
-        Restful rest=null;
-        if(!(rest=this.decreaseAmount(balanceDO.getBalanceId(),balanceDO.getAmount())).getMeta().isSuccess())
+        Restful rest = null;
+        boolean flag = (this.decreaseAmount(balanceDO.getBalanceId(), balanceDO.getAmount())).getMeta().isSuccess();
+        if (!flag)
             return rest;
-        return rest=icbcFeign.increaseAmount(balanceDO);
+        return rest = icbcFeign.increaseAmount(balanceDO);
     }
 }

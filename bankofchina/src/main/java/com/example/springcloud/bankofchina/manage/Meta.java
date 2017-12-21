@@ -8,6 +8,7 @@ public class Meta {
         this.success = success;
         this.message = message;
     }
+    public Meta(){}
     public boolean isSuccess() {
         return success;
     }

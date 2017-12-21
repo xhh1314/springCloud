@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller(value="/balance")
 @ResponseBody
 public class BalanceController {
@@ -43,7 +45,9 @@ public class BalanceController {
      * @return
      */
     @RequestMapping(value="/transferMoneyToICBC")
-    public Restful transferMoneyToICBC(@RequestParam("id") Integer id, @RequestParam("number") Double number){
+    public Restful transferMoneyToICBC(HttpServletRequest request){
+        Integer id=Integer.valueOf(request.getParameter("id"));
+        Double number=Double.valueOf(request.getParameter("number"));
         if(id==null || number==null || number==0)
             return Restful.failure("不合法的参数！");
         BalanceDO balanceDO=new BalanceDO();

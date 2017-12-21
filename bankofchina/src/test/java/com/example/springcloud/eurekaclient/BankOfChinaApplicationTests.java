@@ -36,7 +36,7 @@ public class BankOfChinaApplicationTests {
 	public void transfertoIcbcTest(){
 		BalanceDO balanceDO=new BalanceDO();
 		balanceDO.setBalanceId(1);
-		balanceDO.setAmount(10d);
+		balanceDO.setAmount(2d);
 		Restful rest= balanceService.transferMoneyToICBC(balanceDO);
 		System.out.println(rest.getMeta().getMessage());
 	}
