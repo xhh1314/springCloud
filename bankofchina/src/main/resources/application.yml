@@ -49,7 +49,7 @@ spring:
                       drop-table-allow: false
   jpa:
   #hibernate显示sql语句
-    show-sql : true
+    show-sql: false
     database-platform : org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto : none

@@ -31,4 +31,12 @@ public class BalanceDO {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return "BalanceDO{" +
+                "balanceId=" + balanceId +
+                ", amount=" + amount +
+                '}';
+    }
 }
