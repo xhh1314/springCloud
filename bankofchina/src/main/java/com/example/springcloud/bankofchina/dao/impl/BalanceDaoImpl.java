@@ -18,7 +18,7 @@ public class BalanceDaoImpl implements BalanceDao {
 
     @Override
     public BalanceDO getBalanceById(Integer id) {
-        return balanceJPA.getOne(id);
+        return balanceJPA.getBalanceDOByBalanceId(id);
     }
 
     @Override

@@ -43,7 +43,7 @@ public class BalanceController {
      * @param balanceDO
      * @return
      */
-    @RequestMapping(value = "/increase",method = RequestMethod.PUT)
+    @RequestMapping(value = "/increase",method = RequestMethod.GET)
     public Restful increaseNumber(@RequestBody BalanceDO balanceDO){
         if(balanceDO==null)
             return Restful.failure("账户信息缺失！");

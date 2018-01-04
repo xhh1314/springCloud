@@ -30,7 +30,7 @@ public class TransferConsumer implements ApplicationRunner {
     private BalanceService balanceService;
     private String groupName = "transferMoney";
     private String topic = "transfer";
-    private String namesrvAddr = "127.0.0.1:9876";
+    private String namesrvAddr = "10.1.11.28:9876";
     private final DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(groupName);
     private static Logger log = LoggerFactory.getLogger("transferConsumer service");
     /**

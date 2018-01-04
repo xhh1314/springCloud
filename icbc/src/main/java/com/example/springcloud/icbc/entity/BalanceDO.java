@@ -1,11 +1,11 @@
 package com.example.springcloud.icbc.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.example.springcloud.icbc.vo.BalanceVO;
 
-@Entity(name = "balance")
+import javax.persistence.*;
+
+@Entity
+@Table(name = "balance")
 public class BalanceDO {
 
     private Integer balanceId;
@@ -38,5 +38,11 @@ public class BalanceDO {
                 "balanceId=" + balanceId +
                 ", amount=" + amount +
                 '}';
+    }
+
+    public BalanceDO(){}
+    public BalanceDO(BalanceVO vo){
+        this.balanceId=vo.getBalanceId();
+        this.amount=vo.getAmount();
     }
 }

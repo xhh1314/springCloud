@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BalanceJPA extends JpaRepository<BalanceDO, Integer> {
 
+    BalanceDO getBalanceDOByBalanceId(Integer id);
+
 }

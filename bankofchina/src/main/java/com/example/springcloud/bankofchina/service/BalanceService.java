@@ -44,7 +44,7 @@ public class BalanceService {
     @Transactional(rollbackFor = {SQLException.class,Exception.class})
     public Restful decreaseAmount(Integer id, double number) {
         BalanceDO oldBalance = balanceDao.getBalanceById(id);
-        if (oldBalance == null)
+        if (oldBalance == null || oldBalance.getBalanceId()==null)
             return Restful.failure("账户不存在");
         if (number > oldBalance.getAmount())
             return Restful.failure("账户余额不足");

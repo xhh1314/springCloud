@@ -1,8 +1,9 @@
 package com.example.springcloud.icbc.service;
 
 import com.example.springcloud.bankofchina.manage.Restful;
-import com.example.springcloud.icbc.dao.BalanceDao;
 import com.example.springcloud.icbc.entity.BalanceDO;
+import com.example.springcloud.icbc.manage.BalanceManage;
+import com.example.springcloud.icbc.vo.BalanceVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ import java.math.BigDecimal;
 public class BalanceService {
     private static final Logger log= LoggerFactory.getLogger(BalanceService.class);
     @Autowired
-    private BalanceDao balanceDao;
+    private BalanceManage balanceManage;
+
 
     /**
      *减少账户余额
@@ -33,7 +35,7 @@ public class BalanceService {
      */
     @Transactional(rollbackFor = {Exception.class})
     public Restful decreaseAmount(Integer id, double number) {
-        BalanceDO oldBalance = balanceDao.getBalanceById(id);
+        BalanceVO oldBalance = balanceManage.getBalanceById(id);
         if (oldBalance == null)
             return Restful.failure("账户不存在");
         if (number > oldBalance.getAmount())
@@ -41,7 +43,7 @@ public class BalanceService {
         BigDecimal origin = new BigDecimal(oldBalance.getAmount());
         BigDecimal decreaseNumber = new BigDecimal(number);
         oldBalance.setAmount(origin.subtract(decreaseNumber).doubleValue());
-        balanceDao.save(oldBalance);
+        balanceManage.saveBalance(oldBalance);
         return Restful.success();
     }
     /**
@@ -53,13 +55,13 @@ public class BalanceService {
      */
     @Transactional(rollbackFor = {Exception.class})
     public Restful increaseAmount(Integer id,double number){
-        BalanceDO oldBalance = balanceDao.getBalanceById(id);
+        BalanceVO oldBalance = balanceManage.getBalanceById(id);
         if (oldBalance == null)
             return Restful.failure("账户不存在");
         BigDecimal origin = new BigDecimal(oldBalance.getAmount());
         BigDecimal increaseNumber = new BigDecimal(number);
         oldBalance.setAmount(origin.add(increaseNumber).doubleValue());
-        balanceDao.save(oldBalance);
+        balanceManage.saveBalance(oldBalance);
       //  log.info("账户:{}成功增加金额:{}",id,number);
         return Restful.success();
     }

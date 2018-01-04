@@ -29,7 +29,7 @@ public class TransferProducer implements ApplicationRunner {
 
     private final DefaultMQProducer producer = new DefaultMQProducer("transferMoney");
     private String topic = "transfer";
-    private String namesrvAddr = "127.0.0.1:9876";
+    private String namesrvAddr = "10.1.11.28:9876";
     /**
      * 记录发送消息次数
      */

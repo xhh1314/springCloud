@@ -2,7 +2,9 @@ package com.example.springcloud.icbc;
 
 import com.example.springcloud.icbc.dao.BalanceDao;
 import com.example.springcloud.icbc.entity.BalanceDO;
+import com.example.springcloud.icbc.manage.BalanceManage;
 import com.example.springcloud.icbc.service.BalanceService;
+import com.example.springcloud.icbc.vo.BalanceVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class IcbcApplicationTests {
 
     @Autowired
     private BalanceService balanceService;
+    @Autowired
+    private BalanceManage balanceManage;
 
     @Test
     public void contextLoads() {
@@ -33,6 +37,15 @@ public class IcbcApplicationTests {
     public void incrementAmountTest() {
         balanceService.increaseAmount(1,2d);
 
+    }
+    @Test
+    public void getBalanceById(){
+        BalanceVO balanceVO=balanceManage.getBalanceById(1);
+        balanceManage.getBalanceById(1);
+        balanceManage.getBalanceById(1);
+        balanceManage.saveBalance(balanceVO);
+        balanceManage.getBalanceById(1);
+        balanceManage.getBalanceById(1);
     }
 
 }
