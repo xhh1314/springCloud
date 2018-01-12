@@ -43,7 +43,7 @@ public class BalanceController {
      * @param balanceDO
      * @return
      */
-    @RequestMapping(value = "/increase",method = RequestMethod.GET)
+    @RequestMapping(value = "/increase",method = RequestMethod.POST)
     public Restful increaseNumber(@RequestBody BalanceDO balanceDO){
         if(balanceDO==null)
             return Restful.failure("账户信息缺失！");
@@ -54,6 +54,25 @@ public class BalanceController {
         }
         return balanceService.increaseAmount(balanceDO.getBalanceId(),balanceDO.getAmount());
     }
+
+    /**
+     * 金额转入服务
+     * @param balanceDO
+     * @return
+     */
+    @RequestMapping(value = "/increaseByHttp",method = RequestMethod.PUT)
+    public Restful increaseNumberByHttp(BalanceDO balanceDO){
+        if(balanceDO==null)
+            return Restful.failure("账户信息缺失！");
+        if(balanceDO.getAmount()==0 || balanceDO.getAmount()==null)
+            return Restful.failure("金额不能为空!");
+        if(balanceDO.getBalanceId()==null){
+            return Restful.failure("账户id不能为空！");
+        }
+        return balanceService.increaseAmount(balanceDO.getBalanceId(),balanceDO.getAmount());
+    }
+
+
 
 
 }

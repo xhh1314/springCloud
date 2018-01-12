@@ -40,6 +40,10 @@ public class IcbcApplicationTests {
     }
     @Test
     public void getBalanceById(){
+        BalanceVO balanceVO1 = new BalanceVO();
+        balanceVO1.setBalanceId(1);
+        balanceVO1.setAmount(2000d);
+        balanceManage.saveBalance(balanceVO1);
         BalanceVO balanceVO=balanceManage.getBalanceById(1);
         balanceManage.getBalanceById(1);
         balanceManage.getBalanceById(1);

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -53,7 +54,7 @@ public class BalanceService {
      *@author lh
      *@since
      */
-    @Transactional(rollbackFor = {Exception.class})
+    @Transactional(rollbackFor = {Exception.class},isolation = Isolation.REPEATABLE_READ)
     public Restful increaseAmount(Integer id,double number){
         BalanceVO oldBalance = balanceManage.getBalanceById(id);
         if (oldBalance == null)
