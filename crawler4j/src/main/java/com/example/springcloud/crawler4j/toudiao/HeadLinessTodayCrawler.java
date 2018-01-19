@@ -1,10 +1,14 @@
 package com.example.springcloud.crawler4j.toudiao;
 
 import com.example.springcloud.crawler4j.dao.ContentDaoImpl;
+import com.example.springcloud.crawler4j.entity.ContentDO;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,8 +25,10 @@ public class HeadLinessTodayCrawler extends WebCrawler {
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
         String href = url.getURL().toLowerCase();
-        return !FILTERS.matcher(href).matches();
+        return !FILTERS.matcher(href).matches()&&href.contains("people.com.cn");
     }
+
+
 
     @Override
     public void visit(Page page) {
@@ -31,10 +37,19 @@ public class HeadLinessTodayCrawler extends WebCrawler {
         if (!(page.getParseData() instanceof HtmlParseData))
             return;
         HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
-        String text = htmlParseData.getText();
+        //String text = htmlParseData.getText();
         String html = htmlParseData.getHtml();
+        if(html==null)
+            return;
+        Document document=Jsoup.parse(html);
+        Elements texts=document.getElementsByClass("text_con");
+        ContentDO content=new ContentDO();
+        content.setContent(texts.html());
+        Elements title=document.select(".text_title.pre");
+        content.setTitle(title.text());
+        contentDao.saveContent(content);
         Set<WebURL> links = htmlParseData.getOutgoingUrls();
-        System.out.println("Text length: " + text);
+        //System.out.println("Text length: " + text);
            /* System.out.println("Html length: " + html.length());
             System.out.println("Number of outgoing links: " + links.size());*/
 
