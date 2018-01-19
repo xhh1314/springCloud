@@ -22,7 +22,7 @@ public class BalanceDaoImpl implements BalanceDao{
     private final AtomicInteger count=new AtomicInteger(0);
     private Lock lock=new ReentrantLock();
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    //@Transactional(isolation = Isolation.SERIALIZABLE)
     public BalanceDO save(BalanceDO balanceDO) {
         BalanceDO balanceDO1=null;
         lock.lock();

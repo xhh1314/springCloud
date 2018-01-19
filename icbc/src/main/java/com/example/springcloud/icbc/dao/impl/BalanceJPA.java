@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BalanceJPA extends JpaRepository<BalanceDO, Integer> {
 
-    @Query(value = "from BalanceDO where balanceId=?1")
+    @Query(value = "select * from balance where balance_id=?1 for update",nativeQuery = true)
     BalanceDO getBalanceById(Integer id);
 }

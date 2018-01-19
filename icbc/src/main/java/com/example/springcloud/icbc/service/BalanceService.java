@@ -1,6 +1,7 @@
 package com.example.springcloud.icbc.service;
 
 import com.example.springcloud.bankofchina.manage.Restful;
+import com.example.springcloud.icbc.dao.BalanceDao;
 import com.example.springcloud.icbc.entity.BalanceDO;
 import com.example.springcloud.icbc.manage.BalanceManage;
 import com.example.springcloud.icbc.vo.BalanceVO;
@@ -12,6 +13,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 
 /**
@@ -25,6 +28,9 @@ public class BalanceService {
     private static final Logger log= LoggerFactory.getLogger(BalanceService.class);
     @Autowired
     private BalanceManage balanceManage;
+    @Autowired
+    private BalanceDao balanceDao;
+    private final Lock lock=new ReentrantLock();
 
 
     /**
@@ -56,14 +62,20 @@ public class BalanceService {
      */
     @Transactional(rollbackFor = {Exception.class},isolation = Isolation.REPEATABLE_READ)
     public Restful increaseAmount(Integer id,double number){
-        BalanceVO oldBalance = balanceManage.getBalanceById(id);
-        if (oldBalance == null)
-            return Restful.failure("账户不存在");
-        BigDecimal origin = new BigDecimal(oldBalance.getAmount());
-        BigDecimal increaseNumber = new BigDecimal(number);
-        oldBalance.setAmount(origin.add(increaseNumber).doubleValue());
-        balanceManage.saveBalance(oldBalance);
-      //  log.info("账户:{}成功增加金额:{}",id,number);
+        try {
+            BalanceDO oldBalance = balanceDao.getBalanceById(id);
+            if (oldBalance == null)
+                return Restful.failure("账户不存在");
+            BigDecimal origin = new BigDecimal(oldBalance.getAmount());
+            BigDecimal increaseNumber = new BigDecimal(number);
+            oldBalance.setAmount(origin.add(increaseNumber).doubleValue());
+            balanceManage.saveBalance(new BalanceVO(oldBalance));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+
+        }
+        //  log.info("账户:{}成功增加金额:{}",id,number);
         return Restful.success();
     }
 
