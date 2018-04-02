@@ -1,4 +1,4 @@
-package com.example.springcloud.eurekaclient;
+package com.example.springcloud.oauth;
 
 import com.example.springcloud.bankofchina.BankOfChinaApplication;
 import com.example.springcloud.bankofchina.dao.BalanceDao;

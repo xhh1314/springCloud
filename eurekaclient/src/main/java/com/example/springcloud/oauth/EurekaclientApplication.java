@@ -1,4 +1,4 @@
-package com.example.springcloud.eurekaclient;
+package com.example.springcloud.oauth;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
