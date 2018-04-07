@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.myoauth.common.dao.OauthAccessTokenMapper">
+
+
+    <insert id="saveAccessToken" parameterType="AccessTokenDO" flushCache="true" timeout="20"  >
+        <selectKey keyProperty="tokenId" keyColumn="token_id" order="AFTER" resultType="Integer" >SELECT last_insert_id()</selectKey>
+        INSERT INTO oauth_access_token (token, refresh_token_id, client_id, create_time)
+        VALUES (#{token}, #{refreshTokenId}, #{clientId}, #{createTime})
+    </insert>
+
+    <resultMap id="accessTokenResultMap" type="AccessTokenDO">
+        <id property="tokenId" column="token_id"></id>
+        <result property="token" column="token"></result>
+        <result property="refreshTokenId" column="refresh_token_id"></result>
+        <result property="clientId" column="client_id"></result>
+        <result property="createTime" column="create_time"></result>
+    </resultMap>
+    <select id="listAccessTokenByClientKey" parameterType="String"  resultMap="accessTokenResultMap" >
+        SELECT a.* FROM oauth_access_token a,oauth_client_details b where a.client_id=b.client_id and b.client_key=#{clientKey} ORDER BY a.create_time DESC
+    </select>
+
+</mapper>

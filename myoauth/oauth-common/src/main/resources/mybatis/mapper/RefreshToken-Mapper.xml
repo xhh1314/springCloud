@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.myoauth.common.dao.OauthRefreshTokenMapper">
+
+    <insert id="saveRefreshToken" parameterType="RefreshTokenDO">
+        <selectKey resultType="Integer" keyColumn="refresh_token_id" keyProperty="refreshTokenId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO oauth_refresh_token (refresh_token, access_token_id, create_time) VALUES
+        (#{refreshToken},#{accessTokenId},#{createTime})
+    </insert>
+
+    <resultMap id="refreshTokenResultMap" type="RefreshToken">
+        <id column="refresh_token_id" property="refreshTokenId"></id>
+        <result column="refresh_token" property="refreshToken"></result>
+        <result column="access_token_id" property="accessTokenId"></result>
+        <result column="create_time" property="createTime"></result>
+    </resultMap>
+
+    <select id="listRefreshTokenByAccessTokenId" resultMap="refreshTokenResultMap" parameterType="Integer" useCache="true">
+        SELECT * FROM oauth_refresh_token WHERE access_token_id = #{tokenId} ORDER BY create_time DESC
+    </select>
+
+    <select id="getRefreshTokenById" resultMap="refreshTokenResultMap" parameterType="Integer" useCache="true">
+        SELECT * FROM oauth_refresh_token WHERE refresh_token_id = #{refreshTokenId}
+    </select>
+
+</mapper>
