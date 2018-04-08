@@ -21,7 +21,6 @@ public class AccessTokenManage {
         AccessTokenDO accessTokenDO = new AccessTokenDO();
         accessTokenDO.tranferToDO(accessTokenDTO);
         Integer tokenId = accessTokenMapper.saveAccessToken(accessTokenDO);
-        accessTokenDTO.setTokenId(accessTokenDO.getTokenId());
         return accessTokenDTO;
     }
 
@@ -35,7 +34,7 @@ public class AccessTokenManage {
     }
 
     public void updateAccessTokenCreateTime(AccessTokenDTO accessTokenDTO) {
-        accessTokenMapper.updateAccessTokenCreateTime(accessTokenDTO.getTokenId(), accessTokenDTO.getCreateTime());
+        accessTokenMapper.updateAccessTokenCreateTime(accessTokenDTO.getAccessToken(), accessTokenDTO.getCreateTime());
     }
 
     public void deleteAccessTokenBy(String clientKey) {

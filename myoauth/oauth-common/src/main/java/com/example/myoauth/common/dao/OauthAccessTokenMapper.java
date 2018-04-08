@@ -16,6 +16,6 @@ public interface OauthAccessTokenMapper {
 
 	void deleteAccessTokenBy(String clientKey);
 
-	void updateAccessTokenCreateTime(@Param("accessTokenId") Integer accessTokenId, @Param("currentTime") Date currentTime);
+	void updateAccessTokenCreateTime(@Param("accessToken") String accessToken, @Param("currentTime") Date currentTime);
 
 }

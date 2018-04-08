@@ -4,27 +4,18 @@ import java.util.Date;
 
 public class AccessTokenDTO implements Cloneable{
 
-    private Integer tokenId;
-    private String token;
+    private String accessToken;
     private Integer refreshTokenId;
     private String clientKey;
     private Date createTime;
     private Integer expiresTime;
 
-    public Integer getTokenId() {
-        return tokenId;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setTokenId(Integer tokenId) {
-        this.tokenId = tokenId;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public Integer getRefreshTokenId() {
@@ -62,8 +53,7 @@ public class AccessTokenDTO implements Cloneable{
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AccessTokenDTO{");
-        sb.append("tokenId=").append(tokenId);
-        sb.append(", token='").append(token).append('\'');
+        sb.append(", accessToken='").append(accessToken).append('\'');
         sb.append(", refreshTokenId=").append(refreshTokenId);
         sb.append(", clientId=").append(clientKey);
         sb.append(", createTime=").append(createTime);

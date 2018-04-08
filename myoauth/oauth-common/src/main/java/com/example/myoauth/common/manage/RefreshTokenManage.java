@@ -21,12 +21,11 @@ public class RefreshTokenManage {
      * @return
      */
     public RefreshTokenDTO saveRefreshToken(RefreshTokenDTO refreshTokenDTO) {
-        if (refreshTokenDTO == null)
+        if (refreshTokenDTO == null || refreshTokenDTO.getRefreshToken()==null)
             return null;
         RefreshTokenDO refreshTokenDO = new RefreshTokenDO();
         refreshTokenDO.transferToDo(refreshTokenDTO);
         refreshTokenMapper.saveRefreshToken(refreshTokenDO);
-        refreshTokenDTO.setRefreshTokenId(refreshTokenDO.getRefreshTokenId());
         return refreshTokenDTO;
 
     }
@@ -48,11 +47,11 @@ public class RefreshTokenManage {
     /**
      * 根据refreshToken id查询
      *
-     * @param refreshTokenId
+     * @param refreshToken
      * @return
      */
-    public RefreshTokenDTO getRefreshTokenById(Integer refreshTokenId) {
-        RefreshTokenDO refreshTokenDO = refreshTokenMapper.getRefreshTokenById(refreshTokenId);
+    public RefreshTokenDTO getRefreshTokenById(String refreshToken) {
+        RefreshTokenDO refreshTokenDO = refreshTokenMapper.getRefreshTokenById(refreshToken);
         if (refreshTokenDO == null)
             return null;
         return refreshTokenDO.transferToDto();

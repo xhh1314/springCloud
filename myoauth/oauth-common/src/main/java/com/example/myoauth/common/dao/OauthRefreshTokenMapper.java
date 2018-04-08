@@ -24,8 +24,8 @@ public interface OauthRefreshTokenMapper {
 
 	/**
 	 * 根据refreshToken id查询
-	 * @param refreshTokenId
+	 * @param refreshToken
 	 * @return
 	 */
-	RefreshTokenDO getRefreshTokenById(Integer refreshTokenId);
+	RefreshTokenDO getRefreshTokenById(String refreshToken);
 }

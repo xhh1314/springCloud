@@ -6,19 +6,10 @@ import org.springframework.beans.BeanUtils;
 import java.util.Date;
 
 public class RefreshTokenDO implements Cloneable {
-
-    private Integer refreshTokenId;
     private String refreshToken;
     private Date createTime;
     private String clientKey;
     private Integer expiresTime;
-    public Integer getRefreshTokenId() {
-        return refreshTokenId;
-    }
-
-    public void setRefreshTokenId(Integer refreshTokenId) {
-        this.refreshTokenId = refreshTokenId;
-    }
 
     public String getRefreshToken() {
         return refreshToken;
@@ -64,5 +55,16 @@ public class RefreshTokenDO implements Cloneable {
         BeanUtils.copyProperties(refreshTokenDTO, this);
         return this;
 
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("RefreshTokenDO{");
+        sb.append("refreshToken='").append(refreshToken).append('\'');
+        sb.append(", createTime=").append(createTime);
+        sb.append(", clientKey='").append(clientKey).append('\'');
+        sb.append(", expiresTime=").append(expiresTime);
+        sb.append('}');
+        return sb.toString();
     }
 }
