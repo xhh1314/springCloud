@@ -17,28 +17,27 @@ import java.util.List;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = OauthServerApplication.class)
 public class OauthServerApplicationTests {
 
-	@Autowired
-	private AccessTokenManage accessTokenManage;
+    @Autowired
+    private AccessTokenManage accessTokenManage;
 
-	@Autowired
-	private OauthAccessTokenMapper accessTokenMapper;
+    @Autowired
+    private OauthAccessTokenMapper accessTokenMapper;
 
-	@Test
-	public void accessTokenInsertTest() {
-		AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
-		accessTokenDTO.setClientId(2222);
-		accessTokenDTO.setToken("rrrrrrrrrexd");
-		accessTokenDTO.setCreateTime(new Date());
-		// accessTokenDTO.setRefreshTokenId(333);
-		accessTokenManage.saveAccessToken(accessTokenDTO);
+    @Test
+    public void accessTokenInsertTest() {
+        AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
+        accessTokenDTO.setClientKey("lihao");
+        accessTokenDTO.setToken("rrrrrrrrrexd");
+        accessTokenDTO.setCreateTime(new Date());
+        // accessTokenDTO.setRefreshTokenId(333);
+        accessTokenManage.saveAccessToken(accessTokenDTO);
 
-	}
+    }
 
-	@Test
-	public void listAccessTokenTest() {
-		List<AccessTokenDO> accessTokenDOList = accessTokenMapper.listAccessTokenByClientKey("haiwainet");
-	}
-
+    @Test
+    public void listAccessTokenTest() {
+        List<AccessTokenDO> accessTokenDOList = accessTokenMapper.listAccessTokenByClientKey("haiwainet");
+    }
 
 
 }

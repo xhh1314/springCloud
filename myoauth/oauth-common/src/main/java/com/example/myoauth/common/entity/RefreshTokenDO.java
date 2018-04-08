@@ -5,76 +5,64 @@ import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
 
-public class RefreshTokenDO {
+public class RefreshTokenDO implements Cloneable {
 
-	private Integer refreshTokenId;
-	private String refreshToken;
-	private Integer accessTokenId;
-	private Date createTime;
+    private Integer refreshTokenId;
+    private String refreshToken;
+    private Date createTime;
+    private String clientKey;
+    private Integer expiresTime;
+    public Integer getRefreshTokenId() {
+        return refreshTokenId;
+    }
 
-	public Integer getRefreshTokenId() {
-		return refreshTokenId;
-	}
+    public void setRefreshTokenId(Integer refreshTokenId) {
+        this.refreshTokenId = refreshTokenId;
+    }
 
-	public void setRefreshTokenId(Integer refreshTokenId) {
-		this.refreshTokenId = refreshTokenId;
-	}
+    public String getRefreshToken() {
+        return refreshToken;
+    }
 
-	public String getRefreshToken() {
-		return refreshToken;
-	}
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
 
-	public void setRefreshToken(String refreshToken) {
-		this.refreshToken = refreshToken;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public Integer getAccessTokenId() {
-		return accessTokenId;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setAccessTokenId(Integer accessTokenId) {
-		this.accessTokenId = accessTokenId;
-	}
+    public String getClientKey() {
+        return clientKey;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setClientKey(String clientKey) {
+        this.clientKey = clientKey;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Integer getExpiresTime() {
+        return expiresTime;
+    }
 
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder("RefreshTokenDO{");
-		sb.append("refreshTokenId=").append(refreshTokenId);
-		sb.append(", refreshToken='").append(refreshToken).append('\'');
-		sb.append(", accessTokenId=").append(accessTokenId);
-		sb.append(", createTime=").append(createTime);
-		sb.append('}');
-		return sb.toString();
-	}
+    public void setExpiresTime(Integer expiresTime) {
+        this.expiresTime = expiresTime;
+    }
 
-	public RefreshTokenDTO transferToDto() {
-		Object o = null;
-		try {
-			o = this.clone();
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
-		if (o != null) {
-			return (RefreshTokenDTO) o;
-		} else {
-			RefreshTokenDTO refreshTokenDTO = new RefreshTokenDTO();
-			BeanUtils.copyProperties(this, refreshTokenDTO);
-			return refreshTokenDTO;
-		}
+    public RefreshTokenDTO transferToDto() {
+        RefreshTokenDTO refreshTokenDTO = new RefreshTokenDTO();
+        BeanUtils.copyProperties(this, refreshTokenDTO);
+        return refreshTokenDTO;
 
-	}
 
-	public RefreshTokenDO transferToDo(RefreshTokenDTO refreshTokenDTO) {
-		BeanUtils.copyProperties(refreshTokenDTO, this);
-		return this;
+    }
 
-	}
+    public RefreshTokenDO transferToDo(RefreshTokenDTO refreshTokenDTO) {
+        BeanUtils.copyProperties(refreshTokenDTO, this);
+        return this;
+
+    }
 }

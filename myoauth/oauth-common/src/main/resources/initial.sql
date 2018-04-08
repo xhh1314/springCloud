@@ -12,14 +12,17 @@ create table oauth_client_details(
 );
 create unique INDEX  uk_client_key on oauth_client_details(client_key);
 
+
+drop TABLE  IF EXISTS oauth_access_token;
 create table oauth_access_token(
   token_id INT unsigned   primary key auto_increment,
   token VARCHAR(256) NOT NULL ,
   refresh_token_id int unsigned,
-  client_id int unsigned,
-  create_time DATETIME
+  client_key VARCHAR(256),
+  create_time DATETIME,
+  expires_time int UNSIGNED
 );
-create INDEX index_token_refreshTokenId_clientId on oauth_access_token(token, refresh_token_id, client_id) ;
+create INDEX index_token_refreshTokenId_clientKey on oauth_access_token(token, refresh_token_id, client_key) ;
 create INDEX index_token_refreshTokenId on oauth_access_token(token,refresh_token_id ) ;
 drop index index_token_refreshTokenId on oauth_access_token;
 
@@ -36,7 +39,8 @@ drop table IF EXISTS oauth_refresh_token;
 CREATE table oauth_refresh_token(
   refresh_token_id INT unsigned  primary key auto_increment,
   refresh_token VARCHAR(256) NOT NULL ,
-  access_token_id int unsigned,
+  client_key VARCHAR(256) NOT NULL ,
   create_time DATETIME
 );
-create INDEX  uk_access_token ON oauth_refresh_token(access_token_id);
+ALTER table oauth_refresh_token add COLUMN expires_time int UNSIGNED;
+create INDEX  uk_client_key ON oauth_refresh_token(client_key);

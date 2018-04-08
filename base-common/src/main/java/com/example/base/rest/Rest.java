@@ -17,7 +17,7 @@ public class Rest {
     /**
      * 状态码
      */
-    private Short code;
+    private int code;
     /**
      * 是否成功返回所需数据
      */
@@ -35,6 +35,7 @@ public class Rest {
         Rest rest = new Rest();
         rest.message = message;
         rest.code = 200;
+        rest.success = true;
         return rest;
     }
 
@@ -50,6 +51,16 @@ public class Rest {
         rest.message = message;
         rest.code = 200;
         rest.data = data;
+        rest.success = true;
+        return rest;
+    }
+
+    public static Rest success(Object data, int code) {
+        Rest rest = new Rest();
+        rest.code = 200;
+        rest.data = data;
+        rest.code = code;
+        rest.success = true;
         return rest;
     }
 
@@ -58,6 +69,7 @@ public class Rest {
         rest.message = message;
         rest.code = 200;
         rest.data = data;
+        rest.success = true;
         return rest;
     }
 
@@ -66,6 +78,7 @@ public class Rest {
         rest.message = "success";
         rest.code = 200;
         rest.data = data;
+        rest.success = true;
         return rest;
     }
 
@@ -77,6 +90,7 @@ public class Rest {
      */
     public static Rest success(Map<String, Object> data) {
         Rest rest = new Rest();
+        rest.success = true;
         rest.message = "success";
         rest.code = 200;
         rest.data = data;
@@ -98,10 +112,24 @@ public class Rest {
         return rest;
     }
 
-    public static Rest failure(Object data, String message) {
+    public static Rest failure(int code) {
+        Rest rest = new Rest();
+        rest.message = "failure";
+        rest.code = code;
+        return rest;
+    }
+
+    public static Rest failure(int code, String message) {
         Rest rest = new Rest();
         rest.message = message;
-        rest.code = 500;
+        rest.code = code;
+        return rest;
+    }
+
+    public static Rest failure(Object data, String message, int code) {
+        Rest rest = new Rest();
+        rest.message = message;
+        rest.code = code;
         rest.data = data;
         return rest;
     }
@@ -129,12 +157,13 @@ public class Rest {
     }
 
 
-    public Short getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(Short code) {
+    public Rest setCode(int code) {
         this.code = code;
+        return this;
     }
 
     public boolean isSuccess() {

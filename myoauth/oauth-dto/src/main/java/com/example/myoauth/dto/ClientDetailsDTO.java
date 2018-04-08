@@ -1,9 +1,6 @@
-package com.example.myoauth.common.entity;
+package com.example.myoauth.dto;
 
-import com.example.myoauth.dto.ClientDetailsDTO;
-import org.springframework.beans.BeanUtils;
-
-public class ClientDetailsDO implements Cloneable {
+public class ClientDetailsDTO  implements Cloneable{
     private Integer clientId;
     private String clientKey;
     private String clientSecret;
@@ -50,14 +47,6 @@ public class ClientDetailsDO implements Cloneable {
         this.resourcesId = resourcesId;
     }
 
-    public String getAuthorizedGrantType() {
-        return authorizedGrantType;
-    }
-
-    public void setAuthorizedGrantType(String authorizedGrantType) {
-        this.authorizedGrantType = authorizedGrantType;
-    }
-
     public String getScope() {
         return scope;
     }
@@ -66,6 +55,13 @@ public class ClientDetailsDO implements Cloneable {
         this.scope = scope;
     }
 
+    public String getAuthorizedGrantType() {
+        return authorizedGrantType;
+    }
+
+    public void setAuthorizedGrantType(String authorizedGrantType) {
+        this.authorizedGrantType = authorizedGrantType;
+    }
 
     public String getWebServerRedirectUri() {
         return webServerRedirectUri;
@@ -90,18 +86,4 @@ public class ClientDetailsDO implements Cloneable {
     public void setRefreshTokenValidity(Integer refreshTokenValidity) {
         this.refreshTokenValidity = refreshTokenValidity;
     }
-
-    public ClientDetailsDO transfertoDo(ClientDetailsDTO clientDetailsDTO) {
-        BeanUtils.copyProperties(clientDetailsDTO, this);
-        return this;
-
-    }
-
-    public ClientDetailsDTO transfertoDTO() {
-        ClientDetailsDTO clientDetailsDTO = new ClientDetailsDTO();
-        BeanUtils.copyProperties(this, clientDetailsDTO);
-        return clientDetailsDTO;
-    }
-
-
 }

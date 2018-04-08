@@ -6,19 +6,20 @@
         <selectKey resultType="Integer" keyColumn="refresh_token_id" keyProperty="refreshTokenId" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        INSERT INTO oauth_refresh_token (refresh_token, access_token_id, create_time) VALUES
-        (#{refreshToken},#{accessTokenId},#{createTime})
+        INSERT INTO oauth_refresh_token (refresh_token, client_key, create_time,expires_time) VALUES
+        (#{refreshToken},#{clientKey},#{createTime},#{expiresTime})
     </insert>
 
-    <resultMap id="refreshTokenResultMap" type="RefreshToken">
+    <resultMap id="refreshTokenResultMap" type="RefreshTokenDO">
         <id column="refresh_token_id" property="refreshTokenId"></id>
         <result column="refresh_token" property="refreshToken"></result>
-        <result column="access_token_id" property="accessTokenId"></result>
+        <result column="client_key" property="clientKey"></result>
         <result column="create_time" property="createTime"></result>
+        <result column="expires_time" property="expiresTime"></result>
     </resultMap>
 
-    <select id="listRefreshTokenByAccessTokenId" resultMap="refreshTokenResultMap" parameterType="Integer" useCache="true">
-        SELECT * FROM oauth_refresh_token WHERE access_token_id = #{tokenId} ORDER BY create_time DESC
+    <select id="listRefreshTokenByClientKey" resultMap="refreshTokenResultMap" parameterType="String" useCache="true">
+        SELECT * FROM oauth_refresh_token WHERE client_key = #{clientKey} ORDER BY create_time DESC
     </select>
 
     <select id="getRefreshTokenById" resultMap="refreshTokenResultMap" parameterType="Integer" useCache="true">

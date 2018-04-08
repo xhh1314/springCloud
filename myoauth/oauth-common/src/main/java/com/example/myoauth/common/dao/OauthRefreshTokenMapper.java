@@ -17,10 +17,10 @@ public interface OauthRefreshTokenMapper {
 
 	/**
 	 * 根据accessTokenId查询refreshToken
-	 * @param tokenId
+	 * @param clientKey
 	 * @return
-	 */
-	List<RefreshTokenDO> listRefreshTokenByAccessTokenId(Integer tokenId);
+	 */	List<RefreshTokenDO> listRefreshTokenByClientKey(String  clientKey);
+
 
 	/**
 	 * 根据refreshToken id查询

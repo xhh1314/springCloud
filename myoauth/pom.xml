@@ -29,6 +29,8 @@
 		<module>oauth-server</module>
 		<module>oauth-client</module>
 		<module>oauth-resource</module>
+		<module>oauth-dto</module>
+		<module>oauth-common</module>
 	</modules>
 
 	<dependencies>

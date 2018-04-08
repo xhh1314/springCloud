@@ -1,8 +1,10 @@
 package com.example.myoauth.common.dao;
 
 import com.example.myoauth.common.entity.AccessTokenDO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -13,5 +15,7 @@ public interface OauthAccessTokenMapper {
 	 List<AccessTokenDO> listAccessTokenByClientKey(String clientKey);
 
 	void deleteAccessTokenBy(String clientKey);
+
+	void updateAccessTokenCreateTime(@Param("accessTokenId") Integer accessTokenId, @Param("currentTime") Date currentTime);
 
 }

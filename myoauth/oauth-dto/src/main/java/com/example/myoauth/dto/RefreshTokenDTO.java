@@ -2,13 +2,13 @@ package com.example.myoauth.dto;
 
 import java.util.Date;
 
-public class RefreshTokenDTO {
+public class RefreshTokenDTO implements Cloneable{
 
     private Integer refreshTokenId;
     private String refreshToken;
-    private Integer accessTokenId;
     private Date createTime;
-
+    private String clientKey;
+    private Integer expiresTime;
     public Integer getRefreshTokenId() {
         return refreshTokenId;
     }
@@ -25,13 +25,6 @@ public class RefreshTokenDTO {
         this.refreshToken = refreshToken;
     }
 
-    public Integer getAccessTokenId() {
-        return accessTokenId;
-    }
-
-    public void setAccessTokenId(Integer accessTokenId) {
-        this.accessTokenId = accessTokenId;
-    }
 
     public Date getCreateTime() {
         return createTime;
@@ -41,14 +34,19 @@ public class RefreshTokenDTO {
         this.createTime = createTime;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("RefreshTokenDTO{");
-        sb.append("refreshTokenId=").append(refreshTokenId);
-        sb.append(", refreshToken='").append(refreshToken).append('\'');
-        sb.append(", accessTokenId=").append(accessTokenId);
-        sb.append(", createTime=").append(createTime);
-        sb.append('}');
-        return sb.toString();
+    public String getClientKey() {
+        return clientKey;
+    }
+
+    public void setClientKey(String clientKey) {
+        this.clientKey = clientKey;
+    }
+
+    public Integer getExpiresTime() {
+        return expiresTime;
+    }
+
+    public void setExpiresTime(Integer expiresTime) {
+        this.expiresTime = expiresTime;
     }
 }
