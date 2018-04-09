@@ -27,9 +27,9 @@ public class OauthServerApplicationTests {
     public void accessTokenInsertTest() {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClientKey("lihao");
-        accessTokenDTO.setToken("rrrrrrrrrexd");
+        accessTokenDTO.setAccessToken("rrrrrrrrrexd");
         accessTokenDTO.setCreateTime(new Date());
-        // accessTokenDTO.setRefreshTokenId(333);
+        accessTokenDTO.setRefreshToken("dddddd");
         accessTokenManage.saveAccessToken(accessTokenDTO);
 
     }

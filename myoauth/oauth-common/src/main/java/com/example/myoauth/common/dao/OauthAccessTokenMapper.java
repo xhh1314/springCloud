@@ -18,4 +18,7 @@ public interface OauthAccessTokenMapper {
 
 	void updateAccessTokenCreateTime(@Param("accessToken") String accessToken, @Param("currentTime") Date currentTime);
 
+    List<AccessTokenDO> listAccessTokenByRefreshToken(String refreshToken);
+
+	AccessTokenDO getAccessTokenById(String accessToken);
 }

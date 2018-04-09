@@ -31,6 +31,13 @@ public class Rest {
      */
     private Object data;
 
+    public static Rest success() {
+        Rest rest = new Rest();
+        rest.code = 200;
+        rest.success = true;
+        return rest;
+    }
+
     public static Rest success(String message) {
         Rest rest = new Rest();
         rest.message = message;
@@ -186,8 +193,9 @@ public class Rest {
         return data;
     }
 
-    public void setData(Object data) {
+    public Rest setData(Object data) {
         this.data = data;
+        return this;
     }
 }
 

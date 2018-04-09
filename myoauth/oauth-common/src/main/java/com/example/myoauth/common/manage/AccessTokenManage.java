@@ -33,10 +33,28 @@ public class AccessTokenManage {
         return accessTokenDTO;
     }
 
+    public AccessTokenDTO getAccessTokenByRefreshToken(String refreshToken) {
+        List<AccessTokenDO> accessTokenDOList = accessTokenMapper.listAccessTokenByRefreshToken(refreshToken);
+        if (accessTokenDOList == null && accessTokenDOList.size() == 0) {
+            return null;
+        }
+        AccessTokenDO accessTokenDO = accessTokenDOList.get(0);
+        AccessTokenDTO accessTokenDTO = accessTokenDO.tranferToDTO();
+        return accessTokenDTO;
+    }
+
     public void updateAccessTokenCreateTime(AccessTokenDTO accessTokenDTO) {
         accessTokenMapper.updateAccessTokenCreateTime(accessTokenDTO.getAccessToken(), accessTokenDTO.getCreateTime());
     }
 
     public void deleteAccessTokenBy(String clientKey) {
+    }
+
+    public AccessTokenDTO getAccessTokenById(String accessToken) {
+        AccessTokenDO accessTokenDO = accessTokenMapper.getAccessTokenById(accessToken);
+        if (accessTokenDO == null)
+            return null;
+        return accessTokenDO.tranferToDTO();
+
     }
 }

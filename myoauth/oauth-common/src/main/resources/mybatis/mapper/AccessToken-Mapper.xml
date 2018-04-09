@@ -22,5 +22,12 @@
         SELECT a.* FROM oauth_access_token a where a.client_key=#{clientKey} ORDER BY a.create_time DESC
     </select>
 
+    <select id="listAccessTokenByRefreshToken" parameterType="String" resultMap="accessTokenResultMap">
+        SELECT * from oauth_access_token WHERE  refresh_token=#{refreshToken} ORDER BY create_time DESC
+    </select>
+    <select id="getAccessTokenById"  parameterType="String" resultMap="accessTokenResultMap">
+        SELECT * FROM oauth_access_token WHERE access_token=#{accessToken}
+    </select>
+
 
 </mapper>

@@ -9,4 +9,7 @@ public interface AccessTokenService {
     Rest createAccessToken(String clientKey, String clientSecret);
 
 
+    Rest refreshToken(String clientKey, String refreshToken);
+
+    Rest checkAccessToken(String accessToken);
 }
