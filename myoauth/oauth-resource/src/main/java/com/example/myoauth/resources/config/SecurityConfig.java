@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SecurityConfig {
 
-    private String checkAccessTokenUrl = "http://localhost:8709/check_access_token";
+    private String checkAccessTokenUrl = "http://localhost:8709/oauth/check_access_token";
 
     @Bean
     public FilterRegistrationBean oauthResourceProtectFliter() {

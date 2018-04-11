@@ -1,5 +1,6 @@
 package com.example.myoauth.server.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.example.base.rest.Rest;
 import com.example.myoauth.common.constant.StatusConstans;
 import com.example.myoauth.server.service.AccessTokenService;
@@ -62,9 +63,10 @@ public class AccessTokenController {
     @RequestMapping(value = "/check_access_token", method = RequestMethod.GET)
     @ResponseBody
     public Rest checkAccessToken(String access_token) {
-        if (!StringUtils.hasText(access_token))
+       if (!StringUtils.hasText(access_token))
             return Rest.failure(StatusConstans.AUTHENTICATION_ERROR, "required param of accessToken");
-        return accessTokenService.checkAccessToken(access_token);
+        Rest rest= accessTokenService.checkAccessToken(access_token);
+        return rest;
 
     }
 }

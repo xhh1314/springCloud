@@ -31,6 +31,7 @@
 		<module>oauth-resource</module>
 		<module>oauth-dto</module>
 		<module>oauth-common</module>
+		<module>oauth-filter</module>
 	</modules>
 
 	<dependencies>

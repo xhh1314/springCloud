@@ -147,7 +147,7 @@ public class AccessTokenServiceImpl implements AccessTokenService {
     @Override
     public Rest checkAccessToken(String accessToken) {
         AccessTokenDTO accessTokenDTO = accessTokenManage.getAccessTokenById(accessToken);
-        if (accessToken == null)
+        if (accessTokenDTO == null)
             return Rest.success(false);
         int diff = calculateTimeBalance(new Date(), accessTokenDTO.getCreateTime());
         if (diff <= accessTokenDTO.getExpiresTime())

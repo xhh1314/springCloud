@@ -9,14 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>base-common</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    </dependencies>
+    <groupId>com.example.framework</groupId>
+    <artifactId>framework-parent</artifactId>
+    <packaging>pom</packaging>
 
 
 </project>
