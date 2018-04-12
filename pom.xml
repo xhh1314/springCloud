@@ -7,8 +7,8 @@
     <artifactId>parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>webservice-framework</module>
         <module>practice-framework</module>
+        <module>taobao-project</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -35,7 +35,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
     </dependencies>
+
 
 
 
