@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
+//@Configuration
 public class DubboConfiguration {
 
     @Bean
@@ -25,7 +26,9 @@ public class DubboConfiguration {
     public RegistryConfig registryConfig() {
         RegistryConfig registryConfig = new RegistryConfig();
         registryConfig.setAddress("zookeeper://127.0.0.1:2181");
-        registryConfig.setClient("curator");
+        registryConfig.setProtocol("zookeeper");
+        registryConfig.setPort(20881);
+       // registryConfig.setClient("curator");
         return registryConfig;
     }
 }

@@ -3,3 +3,18 @@ server:
 spring:
   application:
     name: user-service
+dubbo:
+  scan:
+    base-packages: com.example.taobao.rpc.service
+  application:
+    id: user-service
+    name: user-service
+  protocol:
+    name: dubbo
+    id: dubbo
+    port: 20880
+  registry:
+    address: zookeeper://127.0.0.1:2181
+    id: user-service-register
+    protocol: zookeeper
+

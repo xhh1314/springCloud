@@ -28,7 +28,7 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.example.springCloud</groupId>
+            <groupId>com.example.practice</groupId>
             <artifactId>base-common</artifactId>
             <version>${project.version}</version>
         </dependency>

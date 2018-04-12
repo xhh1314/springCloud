@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DubboTestController {
 
 
-    @Reference
+    @Reference(version = "1.0.0",application = "${dubbo.application.id}",url = "zookeeper://127.0.0.1:20880")
     private UserService userService;
 
     @RequestMapping(value = "/index")
