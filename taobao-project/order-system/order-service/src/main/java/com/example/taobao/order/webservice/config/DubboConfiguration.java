@@ -1,4 +1,4 @@
-package com.example.taobao.order.config;
+package com.example.taobao.order.webservice.config;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ConsumerConfig;
@@ -13,7 +13,7 @@ public class DubboConfiguration {
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("order-service");
+        applicationConfig.setName("order-webservice");
         return applicationConfig;
     }
     @Bean

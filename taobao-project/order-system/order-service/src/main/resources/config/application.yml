@@ -2,12 +2,22 @@ server:
   port: 8092
 spring:
   application:
-    name: order-service
+    name: order-webservice
 dubbo:
+  scan:
+    base-packages: com.example.taobao.order.webservice
   application:
-    name: user-service
-    id: user-service
+    name: order-webservice
+    id: order-webservice
+    qos-enable: true
+    qos-port: 22223
   protocol:
-    id: dubbo
+    id: order-service
     name: dubbo
-    port: 20880
+    port: 20881
+    host: 127.0.0.1
+    status: server
+  registry:
+    address: zookeeper://127.0.0.1:2181
+    id: order-webservice-register
+

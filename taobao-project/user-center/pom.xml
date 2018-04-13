@@ -13,7 +13,7 @@
     <artifactId>taobao-user</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>user-rpc</module>
+        <module>user-api</module>
         <module>user-service</module>
     </modules>
 

@@ -1,4 +1,4 @@
-package com.example.taobao.rpc.service;
+package com.example.taobao.user.api;
 
 public interface UserService {
 

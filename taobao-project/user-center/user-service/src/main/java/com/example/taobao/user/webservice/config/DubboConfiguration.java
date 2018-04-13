@@ -1,16 +1,15 @@
-package com.example.taobao.service.config;
+package com.example.taobao.user.webservice.config;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 //@Configuration
 public class DubboConfiguration {
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("user-service");
+        applicationConfig.setName("user-webservice");
         return applicationConfig;
     }
 

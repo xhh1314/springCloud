@@ -9,13 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>user-service</artifactId>
+    <artifactId>taobao-user-service</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.example.taobao.user</groupId>
-            <artifactId>user-rpc</artifactId>
+            <artifactId>taobao-user-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.example.taobao.order</groupId>
+            <artifactId>taobao-order-api</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

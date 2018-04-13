@@ -1,20 +1,22 @@
 server:
   port: 8091
+
 spring:
   application:
-    name: user-service
+    name: user-webservice
 dubbo:
   scan:
-    base-packages: com.example.taobao.rpc.service
+    base-packages: com.example.taobao.user.webservice
   application:
-    id: user-service
-    name: user-service
+    id: user-webservice
+    name: user-webservice
+    qos-enable: true
+    qos-port: 22222
   protocol:
     name: dubbo
     id: dubbo
     port: 20880
+    status: server
   registry:
     address: zookeeper://127.0.0.1:2181
-    id: user-service-register
-    protocol: zookeeper
-
+    id: user-webservice-register
