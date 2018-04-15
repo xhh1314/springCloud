@@ -3,6 +3,23 @@ server:
 spring:
   application:
     name: order-webservice
+  datasource:
+      url: jdbc:mysql://localhost:3306/taobao?useSSL=true&autoReconnect=true
+      password: root
+      username: root
+      driver-class-name: com.mysql.jdbc.Driver
+      druid:
+        initial-size: 2
+        max-active: 10
+        min-idle: 1
+        max-wait: 60000
+        max-pool-prepared-statement-per-connection-size: 20
+        pool-prepared-statements: false
+        test-on-borrow: false
+        test-on-return: false
+        test-while-idle: true
+        max-evictable-idle-time-millis: 300000
+        min-evictable-idle-time-millis: 60000
 dubbo:
   scan:
     base-packages: com.example.taobao.order.webservice

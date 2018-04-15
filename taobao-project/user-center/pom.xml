@@ -15,6 +15,8 @@
     <modules>
         <module>user-api</module>
         <module>user-service</module>
+        <module>user-common</module>
+        <module>user-dto</module>
     </modules>
 
 

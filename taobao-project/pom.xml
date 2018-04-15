@@ -17,6 +17,8 @@
         <module>point-system</module>
         <module>inventory-system</module>
         <module>user-center</module>
+        <module>taobao-transaction</module>
+        <module>taobao-common</module>
     </modules>
 
 
@@ -64,6 +66,25 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.39</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <!-- 使用druid连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
 
     </dependencies>
 </project>

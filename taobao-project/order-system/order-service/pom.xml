@@ -23,6 +23,16 @@
             <artifactId>taobao-order-api</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.example.taobao.user</groupId>
+            <artifactId>taobao-user-dto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.example.taobao.common</groupId>
+            <artifactId>taobao-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 

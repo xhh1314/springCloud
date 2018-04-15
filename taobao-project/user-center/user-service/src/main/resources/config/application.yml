@@ -1,9 +1,3 @@
-server:
-  port: 8091
-
-spring:
-  application:
-    name: user-webservice
 dubbo:
   scan:
     base-packages: com.example.taobao.user.webservice
@@ -20,3 +14,34 @@ dubbo:
   registry:
     address: zookeeper://127.0.0.1:2181
     id: user-webservice-register
+
+server:
+  port: 8091
+
+spring:
+  application:
+    name: user-webservice
+  datasource:
+    url: jdbc:mysql://localhost:3306/taobao?useSSL=true&autoReconnect=true
+    password: root
+    username: root
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 2
+      max-active: 10
+      min-idle: 1
+      max-wait: 60000
+      max-pool-prepared-statement-per-connection-size: 20
+      pool-prepared-statements: false
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      max-evictable-idle-time-millis: 300000
+      min-evictable-idle-time-millis: 60000
+mybatis:
+  mapper-locations: classpath:config/mybatis/mapper/*.xml
+  config-location: classpath:config/mybatis/mybatis-config.xml
+
+
+
+
