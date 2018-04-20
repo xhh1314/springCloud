@@ -1,9 +1,9 @@
 dubbo:
   scan:
-    base-packages: com.example.taobao.user.webservice
+    base-packages: com.example.taobao.transaction.webservice
   application:
-    id: user-webservice
-    name: user-webservice
+    id: transaction-webservice
+    name: transaction-webservice
     qos-enable: true
     qos-port: 22222
 #  protocol:
@@ -13,14 +13,14 @@ dubbo:
 #    status: server
   registry:
     address: zookeeper://127.0.0.1:2181
-    id: user-webservice-register
+    id: transaction-webservice-register
 
 server:
   port: 8094
 
 spring:
   application:
-    name: user-webservice
+    name: transaction-webservice
   datasource:
     url: jdbc:mysql://localhost:3306/taobao?useSSL=true&autoReconnect=true
     password: root
@@ -36,8 +36,8 @@ spring:
       test-on-borrow: false
       test-on-return: false
       test-while-idle: true
-      max-evictable-idle-time-millis: 300000
-      min-evictable-idle-time-millis: 60000
+      #max-evictable-idle-time-millis: 300000
+      #min-evictable-idle-time-millis: 60000
 mybatis:
   mapper-locations: classpath:config/mybatis/mapper/*.xml
   config-location: classpath:config/mybatis/mybatis-config.xml

@@ -17,7 +17,7 @@
         <module>point-system</module>
         <module>inventory-system</module>
         <module>user-center</module>
-        <module>taobao-transaction</module>
+        <module>transaction-system</module>
         <module>taobao-common</module>
     </modules>
 

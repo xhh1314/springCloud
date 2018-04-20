@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.taobao.order.common.dao.OrderMapper">
+
+    <update id="updateOrder" parameterType="OrderDO">
+
+        UPDATE taobao_order
+        <set>
+            <if test="userId!=null">user_id = #{userId},</if>
+            <if test="deliveryAddressId!=null">delivery_address_id = #{deliveryAddressId},</if>
+            <if test="aggregateAmount!=null">aggregate_amount = #{aggregateAmount},</if>
+            <if test="returnAmount!=null">return_amount = #{returnAmount},</if>
+            <if test="discountAmount!=null">discount_amount = #{discountAmount},</if>
+            <if test="payAmount!=null">pay_amount = #{payAmount},</if>
+            <if test="createTime!=null">create_time = #{createTime},</if>
+            <if test="payTime!=null">pay_time = #{payTime},</if>
+            <if test="dispatchingId!=null">dispatching_id = #{dispatchingId},</if>
+            <if test="status!=null">status= #{status}</if>
+            WHERE order_id = #{orderId}
+        </set>
+    </update>
+
+    <resultMap id="orderResultMap" type="OrderDO">
+        <id column="order_id" property="orderId"/>
+        <result column="user_id"  property="userId" />
+        <result column="delivery_address_id"  property="deliveryAddressId" />
+        <result column="aggregate_amount"  property="aggregateAmount" />
+        <result column="return_amount"  property="returnAmount" />
+        <result column="discount_amount"  property="discountAmount" />
+        <result column="pay_amount"  property="payAmount" />
+        <result column="create_time"  property="createTime" />
+        <result column="pay_time"  property="payTime" />
+        <result column="dispatching_id"  property="dispatchingId" />
+        <result column="status"  property="status" />
+        <collection property="orderItems" ofType="OrderItemDO" fetchType="lazy" javaType="ArrayList" column="order_id" select="com.example.taobao.order.common.dao.OrderItemMapper.getOrderItemByOrderId" />
+    </resultMap>
+    <!-- <collection property="orderItems" ofType="OrderItemDO" fetchType="lazy"  >
+           <id column="order_item_id" property="orderItemId"/>
+           <result column="order_id" property="orderId" />
+           <result column="product_id" property="productId"/>
+           <result column="create_time" property="createTime"/>
+       </collection>-->
+          <!--  select a.*, b.* FROM taobao_order a LEFT JOIN taobao_order_item b ON a.order_id=b.order_id WHERE a.order_id=#{orderId}-->
+    <select id="getOrderById" resultMap="orderResultMap" parameterType="Integer">
+        select a.* FROM taobao_order a WHERE a.order_id=#{orderId}
+    </select>
+
+
+</mapper>

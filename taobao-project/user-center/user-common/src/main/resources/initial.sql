@@ -1,5 +1,5 @@
-DROP table IF EXISTS user;
-CREATE TABLE user (
+DROP table IF EXISTS taobao_user;
+CREATE TABLE taobao_user (
   user_id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   username         VARCHAR(25) NOT NULL,
   nickname         VARCHAR(25) NOT NULL,
@@ -11,8 +11,8 @@ CREATE TABLE user (
   status           TINYINT
 );
 CREATE INDEX index_username
-  ON user (username);
+  ON taobao_user (username);
 CREATE INDEX index_phone
-  ON user (phone);
+  ON taobao_user (phone);
 CREATE INDEX index_email
-  ON user (email);
+  ON taobao_user (email);

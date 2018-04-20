@@ -37,4 +37,8 @@ dubbo:
   registry:
     address: zookeeper://127.0.0.1:2181
     id: order-webservice-register
+mybatis:
+  config-location: classpath:config/mybatis/mybatis-config.xml
+  mapper-locations: classpath:config/mybatis/mapper/*.xml
+
 

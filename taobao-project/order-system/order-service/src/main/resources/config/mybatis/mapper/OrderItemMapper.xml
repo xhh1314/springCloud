@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.taobao.order.common.dao.OrderItemMapper">
+
+    <resultMap id="orderItemResultMap" type="OrderItemDO">
+        <id property="orderItemId" column="order_item_id"/>
+        <result column="order_id" property="orderId"/>
+        <result column="product_id" property="productId"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <select id="getOrderItemByOrderId" resultMap="orderItemResultMap" parameterType="Integer">
+        SELECT * FROM taobao_order_item WHERE order_id=#{orderId}
+    </select>
+
+</mapper>
