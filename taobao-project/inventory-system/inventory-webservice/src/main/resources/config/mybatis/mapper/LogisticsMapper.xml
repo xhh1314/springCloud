@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.taobao.inventory.common.dao.LogisticsMapper">
+
+
+
+    <insert id="saveLogistics" keyProperty="logisticsId" keyColumn="logistics_id" parameterType="LogisticsDO"  >
+        <selectKey  keyProperty="logisticsId" keyColumn="logistics_id" order="AFTER">SELECT last_insert_id()</selectKey>
+        INSERT into inventory_logistics(product_id, order_id, delivery_address, create_time, accepting_order_time, delivery_time, transit_particular, receiving_time)
+        VALUES (#{productId},#{order_id},#{deliveryAddress},#{createTime},#{acceptingOrderTime},#{deliveryTime},#{transitParticular},#{receivingTime})
+    </insert>
+    <resultMap id="resultMapOfLogisticDO" type="LogisticsDO">
+        <id column="logistics_id" property="logisticsId" />
+        <result column="order_id" property="orderId"/>
+        <result column="delivery_address" property="deliveryAddress"/>
+        <result column="create_time" property="createTime"/>
+        <result column="accepting_order_time" property="acceptingOrderTime"/>
+        <result column="delivery_time" property="deliveryTime"/>
+        <result column="transit_particular" property="transitParticular"/>
+        <result column="receiving_time" property="receivingTime"/>
+    </resultMap>
+
+    
+
+    <update id="updateLogistics" parameterType="LogisticsDO">
+        UPDATE inventory_logistics
+        <set>
+            <if test="productId!=null">product_id=#{productId}</if>
+            <if test="orderId!=null">order_id=#{orderId}</if>
+            <if test="deliveryAddress!=null">delivery_address=#{deliveryAddress}</if>
+            <if test="createTime!=null">create_time=#{createTime}</if>
+            <if test="acceptingOrderTime!=null">accepting_order_time=#{acceptingOrderTime}</if>
+            <if test="deliveryTime!=null">delivery_time=#{deliveryTime}</if>
+            <if test="transitParticular!=null">transit_particular#{transitParticular}</if>
+            <if test="receivingTime!=null">receiving_time=#{receivingTime}</if>
+        </set>
+        where logistics_id={#logisticsId}
+    </update>
+
+
+
+</mapper>

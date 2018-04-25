@@ -19,8 +19,6 @@
         <typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap"/>
         <typeAlias alias="ArrayList" type="java.util.ArrayList"/>
         <typeAlias alias="LinkedList" type="java.util.LinkedList"/>
-        <typeAlias alias="OrderDO" type="com.example.taobao.order.common.entity.OrderDO"/>
-        <typeAlias alias="OrderItemDO" type="com.example.taobao.order.common.entity.OrderItemDO"/>
-        <typeAlias alias="ScoreDO" type="com.example.taobao.order.common.entity.ScoreDO"/>
+        <typeAlias alias="LogisticsDO" type="com.example.taobao.inventory.common.entity.LogisticsDO"/>
     </typeAliases>
 </configuration>

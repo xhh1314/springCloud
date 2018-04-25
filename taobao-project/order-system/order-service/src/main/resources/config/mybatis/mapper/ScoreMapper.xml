@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.taobao.order.common.dao.ScoreMapper">
+
+    <update id="updateScore" parameterType="ScoreDO">
+        UPDATE scores
+        <set >
+            <if test="studentId!=null">student_id =#{studentId}</if>
+            <if test="score!=null">score=#{score}</if>
+        </set>
+        where score_id=#{scoreId}
+    </update>
+    <insert id="insertScore" parameterType="ScoreDO" >
+        <selectKey keyColumn="score_id" keyProperty="scoreId" order="AFTER" resultType="Integer">SELECT last_insert_id()</selectKey>
+        INSERT INTO scores(student_id, socre) VALUES (#{studentId},#{score})
+    </insert>
+    <resultMap id="scoreResultMap" type="ScoreDO">
+        <id column="score_id" property="scoreId"/>
+        <result column="student_id"  property="studentId" />
+        <result column="score"  property="score" />
+    </resultMap>
+    <select id="getScoreByStudentId" resultMap="scoreResultMap" parameterType="Integer">
+         SELECT * FROM  scores WHERE student_id=#{studentId}
+    </select>
+
+
+</mapper>

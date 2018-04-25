@@ -22,3 +22,12 @@ CREATE TABLE taobao_order_item(
   create_time DATETIME
 );
 create INDEX idx_order_id on taobao_order_item(order_id);
+
+
+DROP table IF EXISTS scores;
+create table scores(
+  score_id int PRIMARY KEY AUTO_INCREMENT,
+  student_id int,
+  socre int
+);
+create INDEX idx_student_id on scores(student_id);
