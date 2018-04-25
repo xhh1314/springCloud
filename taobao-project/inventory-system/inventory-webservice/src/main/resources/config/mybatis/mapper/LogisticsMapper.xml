@@ -7,9 +7,9 @@
 
 
     <insert id="saveLogistics" keyProperty="logisticsId" keyColumn="logistics_id" parameterType="LogisticsDO"  >
-        <selectKey  keyProperty="logisticsId" keyColumn="logistics_id" order="AFTER">SELECT last_insert_id()</selectKey>
+        <selectKey  keyProperty="logisticsId" keyColumn="logistics_id" order="AFTER" resultType="Integer">SELECT last_insert_id()</selectKey>
         INSERT into inventory_logistics(product_id, order_id, delivery_address, create_time, accepting_order_time, delivery_time, transit_particular, receiving_time)
-        VALUES (#{productId},#{order_id},#{deliveryAddress},#{createTime},#{acceptingOrderTime},#{deliveryTime},#{transitParticular},#{receivingTime})
+        VALUES (#{productId},#{orderId},#{deliveryAddress},#{createTime},#{acceptingOrderTime},#{deliveryTime},#{transitParticular},#{receivingTime})
     </insert>
     <resultMap id="resultMapOfLogisticDO" type="LogisticsDO">
         <id column="logistics_id" property="logisticsId" />
@@ -22,7 +22,12 @@
         <result column="receiving_time" property="receivingTime"/>
     </resultMap>
 
-    
+    <select id="getLogisticsById" resultMap="resultMapOfLogisticDO" parameterType="Integer">
+        SELECT * FROM inventory_logistics WHERE logstics_id=#{logisticsId}
+    </select>
+    <select id="getLogisticsByOrderId" resultMap="resultMapOfLogisticDO" parameterType="Integer">
+        SELECT  * FROM inventory_logistics WHERE order_id=#{orderId}
+    </select>
 
     <update id="updateLogistics" parameterType="LogisticsDO">
         UPDATE inventory_logistics
