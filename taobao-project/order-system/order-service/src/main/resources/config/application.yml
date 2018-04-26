@@ -38,7 +38,7 @@ dubbo:
     name: order-webservice
     id: order-webservice
     qos-enable: true
-    qos-port: 22223
+    qos-port: 22224
   protocol:
     id: order-service
     name: dubbo

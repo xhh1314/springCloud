@@ -1,5 +1,8 @@
 package com.example.test.algorithm;
 
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * 归并排序实现
  * @Author
@@ -53,5 +56,12 @@ public class MergeOrder {
 		while (temp < target.length) {
 			System.out.println(target[temp++]);
 		}
+		//Collections.sort();
+
+		float a=1.4f;
+		double b=1.4d;
+		System.out.println(a==b);
+		String[] strings="a|b|c".split("\\|");
+		System.out.println();
 	}
 }

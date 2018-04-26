@@ -22,7 +22,7 @@
         <result column="receiving_time" property="receivingTime"/>
     </resultMap>
 
-    
+
 
     <update id="updateLogistics" parameterType="LogisticsDO">
         UPDATE inventory_logistics
@@ -33,10 +33,10 @@
             <if test="createTime!=null">create_time=#{createTime}</if>
             <if test="acceptingOrderTime!=null">accepting_order_time=#{acceptingOrderTime}</if>
             <if test="deliveryTime!=null">delivery_time=#{deliveryTime}</if>
-            <if test="transitParticular!=null">transit_particular#{transitParticular}</if>
+            <if test="transitParticular!=null">transit_particular=#{transitParticular}</if>
             <if test="receivingTime!=null">receiving_time=#{receivingTime}</if>
         </set>
-        where logistics_id={#logisticsId}
+        where logistics_id=#{logisticsId}
     </update>
 
 

@@ -5,7 +5,7 @@ dubbo:
     id: transaction-webservice
     name: transaction-webservice
     qos-enable: true
-    qos-port: 22222
+    qos-port: 22232
 #  protocol:
 #    name: dubbo
 #    id: dubbo

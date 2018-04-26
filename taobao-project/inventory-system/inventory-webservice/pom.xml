@@ -23,6 +23,11 @@
             <artifactId>taobao-inventory-common</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.example.taobao.order</groupId>
+            <artifactId>taobao-order-dto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
