@@ -20,8 +20,6 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
-import static org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-
 /**
  * 库存系统监听订单下达指令
  *
@@ -30,9 +28,9 @@ import static org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlySt
  * @since
  */
 @Service
-public class OrderSyncConsumer implements ApplicationRunner {
+public class OrderPushConsumer implements ApplicationRunner {
 
-    public static final Logger log = LoggerFactory.getLogger(OrderSyncConsumer.class);
+    public static final Logger log = LoggerFactory.getLogger(OrderPushConsumer.class);
 
     private String group = "taobao";
 
@@ -57,7 +55,7 @@ public class OrderSyncConsumer implements ApplicationRunner {
                         byte[] bytes = messageExt.getBody();
                         OrderDTO orderDTO = JSON.parseObject(bytes, OrderDTO.class);
                         logisticsService.createLogisticsByOrder(orderDTO);
-                        log.info("收到订单消息,创建物流信息成功!,订单号:{}",orderDTO.getOrderId());
+                        log.info("---------收到订单消息,创建物流信息成功!,订单号:{}-----------",orderDTO.getOrderId());
                     }
                     return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
                 } catch (Exception e) {
@@ -68,6 +66,9 @@ public class OrderSyncConsumer implements ApplicationRunner {
 
             }
         });
+
+        consumer.start();
+        log.info("----------------开始监听订单消息------------");
 
 
     }
@@ -80,6 +81,6 @@ public class OrderSyncConsumer implements ApplicationRunner {
      */
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        startOrderConsumer();
+       // startOrderConsumer();
     }
 }

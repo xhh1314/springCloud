@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
         orderDTO.setPayTime(new Date());
         orderDTO.setStatus((short) 1);
         try {
-            updateOrder(orderDTO);
+            commitOrder(orderDTO);
         } catch (InterruptedException e) {
             log.error("提交订单发生异常!{}", e);
         } catch (RemotingException e) {
@@ -50,8 +50,17 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    /**
+     * 提交订单，修改订单状态，并且把订单信息传给库存系统
+     *
+     * @param orderDTO
+     * @throws InterruptedException
+     * @throws RemotingException
+     * @throws MQClientException
+     * @throws MQBrokerException
+     */
     @Transactional(rollbackFor = {RuntimeException.class, InterruptedException.class, RemotingException.class, MQBrokerException.class})
-    public void updateOrder(OrderDTO orderDTO) throws InterruptedException, RemotingException, MQClientException, MQBrokerException {
+    public void commitOrder(OrderDTO orderDTO) throws InterruptedException, RemotingException, MQClientException, MQBrokerException {
         orderManage.updateOrder(orderDTO);
         orderSyncProducer.orderSubmit(orderDTO);
     }

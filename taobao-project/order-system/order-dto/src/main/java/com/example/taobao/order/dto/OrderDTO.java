@@ -153,5 +153,22 @@ public class OrderDTO implements Serializable {
 		this.status = status;
 	}
 
-
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("OrderDTO{");
+		sb.append("orderId=").append(orderId);
+		sb.append(", orderItemId=").append(orderItemId);
+		sb.append(", userId=").append(userId);
+		sb.append(", deliveryAddressId=").append(deliveryAddressId);
+		sb.append(", aggregateAmount=").append(aggregateAmount);
+		sb.append(", returnAmount=").append(returnAmount);
+		sb.append(", discountAmount=").append(discountAmount);
+		sb.append(", payAmount=").append(payAmount);
+		sb.append(", createTime=").append(createTime);
+		sb.append(", payTime=").append(payTime);
+		sb.append(", dispatchingId=").append(dispatchingId);
+		sb.append(", status=").append(status);
+		sb.append('}');
+		return sb.toString();
+	}
 }

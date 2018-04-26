@@ -14,6 +14,11 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.example.practice</groupId>
+            <artifactId>base-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.example.taobao.common</groupId>
             <artifactId>taobao-common</artifactId>
             <version>${project.version}</version>

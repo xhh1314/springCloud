@@ -4,8 +4,8 @@ dubbo:
   application:
     id: transaction-webservice
     name: transaction-webservice
-    qos-enable: true
-    qos-port: 22232
+    #qos-enable: false
+    #qos-port: 22232
 #  protocol:
 #    name: dubbo
 #    id: dubbo
