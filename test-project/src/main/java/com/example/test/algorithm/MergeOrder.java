@@ -59,7 +59,7 @@ public class MergeOrder {
 		//Collections.sort();
 
 		float a=1.4f;
-		double b=1.4d;
+		double b=1.4f;
 		System.out.println(a==b);
 		String[] strings="a|b|c".split("\\|");
 		System.out.println();

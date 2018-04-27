@@ -24,7 +24,9 @@ public class ByteBufTest {
     public void  directBuff(){
         ByteBuf directBuff=Unpooled.directBuffer(1024);
         byte[] bytes="徐蓉蓉".getBytes();
-        directBuff.readBytes(bytes,0,bytes.length);
+        directBuff.writeBytes(bytes,0,bytes.length);
+        directBuff.markReaderIndex();
+        directBuff.readerIndex(3);
         if(!directBuff.hasArray()){
             int length=directBuff.readableBytes();
             byte[] bytes1=new byte[length];
