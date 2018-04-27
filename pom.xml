@@ -10,6 +10,7 @@
         <module>practice-framework</module>
         <module>taobao-project</module>
         <module>test-project</module>
+        <module>netty-practice</module>
     </modules>
     <packaging>pom</packaging>
 
