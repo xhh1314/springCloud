@@ -17,6 +17,7 @@ public class DubboTestController {
     @RequestMapping(value = "/index")
     @ResponseBody
     public String index(Integer userId) {
+        String a="v";
         return orderService.getOrderDetailsByUserName(userId);
     }
 }
