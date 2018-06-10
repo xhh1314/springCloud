@@ -15,6 +15,7 @@
     <modules>
         <module>netty-test</module>
         <module>http-file-server</module>
+        <module>heartbeat-check</module>
     </modules>
 
     <dependencies>
