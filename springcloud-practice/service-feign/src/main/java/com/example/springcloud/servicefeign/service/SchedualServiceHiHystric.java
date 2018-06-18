@@ -3,9 +3,9 @@ package com.example.springcloud.servicefeign.service;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SchedualServiceHiHystric implements SchedualServiceHi  {
+public class SchedualServiceHiHystric implements SchedualServiceHiFeign {
     @Override
     public String sayHiFromClientOne(String name) {
-        return "sorror"+name+"is down";
+        return "sorror,"+name+" is down";
     }
 }
