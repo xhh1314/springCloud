@@ -1,5 +1,6 @@
 package com.example.taobao.inventory.webservice.service;
 
+import com.example.taobao.common.annotation.DS;
 import com.example.taobao.inventory.common.dao.LogisticsMapper;
 import com.example.taobao.inventory.common.entity.LogisticsDO;
 import com.example.taobao.order.dto.OrderDTO;
@@ -21,14 +22,35 @@ public class LogisticsService {
      *
      * @param orderDTO
      */
-    @Transactional()
+    @DS(id = "datasource0")
+    @Transactional
     public void createLogisticsByOrder(OrderDTO orderDTO) {
+        saveLogistic(orderDTO);
+    }
+
+    /**
+     * 测试分库之后，动态数据源插入
+     *
+     * @param orderDTO
+     */
+
+
+    @Transactional
+    @DS(id = "datasource1")
+    public void createLogisticsByOrder2(OrderDTO orderDTO) {
+        orderDTO.setOrderId(orderDTO.getOrderId() + 1);
+        saveLogistic(orderDTO);
+    }
+
+
+    public void saveLogistic(OrderDTO orderDTO) {
         LogisticsDO logisticsDO = new LogisticsDO();
         logisticsDO.setOrderId(orderDTO.getOrderId());
         logisticsDO.setCreateTime(new Date());
         logisticsDO.setAcceptingOrderTime(new Date());
         logisticsDO.setDeliveryAddress(orderDTO.getDeliveryAddressId());
         logisticsMapper.saveLogistics(logisticsDO);
+        //throw new RuntimeException("eeee");
     }
 
 

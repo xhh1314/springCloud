@@ -34,7 +34,7 @@ public class OrderPushConsumer implements ApplicationRunner {
 
     private String group = "taobao";
 
-    private String nameAddress="10.1.11.28:9876";
+    private String nameAddress = "10.1.11.28:9876";
 
     @Autowired
     private LogisticsService logisticsService;
@@ -55,7 +55,8 @@ public class OrderPushConsumer implements ApplicationRunner {
                         byte[] bytes = messageExt.getBody();
                         OrderDTO orderDTO = JSON.parseObject(bytes, OrderDTO.class);
                         logisticsService.createLogisticsByOrder(orderDTO);
-                        log.info("---------收到订单消息,创建物流信息成功!,订单号:{}-----------",orderDTO.getOrderId());
+                        logisticsService.createLogisticsByOrder2(orderDTO);
+                        log.info("---------收到订单消息,创建物流信息成功!,订单号:{}-----------", orderDTO.getOrderId());
                     }
                     return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
                 } catch (Exception e) {
@@ -81,6 +82,6 @@ public class OrderPushConsumer implements ApplicationRunner {
      */
     @Override
     public void run(ApplicationArguments args) throws Exception {
-       // startOrderConsumer();
+        startOrderConsumer();
     }
 }

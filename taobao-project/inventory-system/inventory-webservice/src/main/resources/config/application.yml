@@ -4,22 +4,43 @@ spring:
   application:
     name: inventory-webservice
   datasource:
+    db1:
+      type: com.alibaba.druid.pool.DruidDataSource
       url: jdbc:mysql://localhost:3306/taobao?useSSL=false&autoReconnect=true
       password: root
       username: root
       driver-class-name: com.mysql.jdbc.Driver
       druid:
-        initial-size: 2
-        max-active: 10
-        min-idle: 1
-        max-wait: 60000
-        max-pool-prepared-statement-per-connection-size: 20
-        pool-prepared-statements: false
-        test-on-borrow: false
-        test-on-return: false
-        test-while-idle: true
-        max-evictable-idle-time-millis: 300000
-        min-evictable-idle-time-millis: 60000
+                initial-size: 2
+                max-active: 10
+                min-idle: 1
+                max-wait: 60000
+                max-pool-prepared-statement-per-connection-size: 20
+                pool-prepared-statements: false
+                test-on-borrow: false
+                test-on-return: false
+                test-while-idle: true
+                max-evictable-idle-time-millis: 300000
+                min-evictable-idle-time-millis: 60000
+    db2:
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://localhost:3306/taobao1?useSSL=false&autoReconnect=true
+      password: root
+      username: root
+      driver-class-name: com.mysql.jdbc.Driver
+      druid:
+                initial-size: 2
+                max-active: 10
+                min-idle: 1
+                max-wait: 60000
+                max-pool-prepared-statement-per-connection-size: 20
+                pool-prepared-statements: false
+                test-on-borrow: false
+                test-on-return: false
+                test-while-idle: true
+                max-evictable-idle-time-millis: 300000
+                min-evictable-idle-time-millis: 60000
+
   redis:
     timeout: 1000
     cluster:

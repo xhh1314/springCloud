@@ -37,7 +37,7 @@ public class OrderPullConsumer implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         consumer.setNamesrvAddr(nameAddress);
-        consumer.start();
+        //consumer.start();
     }
 
     public void consume() throws MQClientException {

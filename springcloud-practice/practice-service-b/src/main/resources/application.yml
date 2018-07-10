@@ -1,0 +1,32 @@
+#各个key的冒号后边必须跟一个空格
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}  #配置instanceId显示IP
+
+spring:
+  application:
+    name: practice-service-b
+server:
+  port: 8081
+
+ribbon:
+  ReadTimeout: 6000
+  ConnectTimeout: 1000
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000

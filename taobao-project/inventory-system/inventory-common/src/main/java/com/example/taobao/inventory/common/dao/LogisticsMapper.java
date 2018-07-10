@@ -7,16 +7,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface LogisticsMapper {
 
-	@Transactional
+	//@Transactional
 	Integer saveLogistics(LogisticsDO logisticsDO);
 
-	@Transactional
+	//@Transactional
 	Integer updateLogistics(LogisticsDO logisticsDO);
 
-	@Transactional(readOnly = true)
+	//@Transactional(readOnly = true)
 	LogisticsDO getLogisticsByOrderId(Integer orderId);
 
-	@Transactional(readOnly = true)
+	//@Transactional(readOnly = true)
 	LogisticsDO getLogisticsById(Integer id);
 
 }
