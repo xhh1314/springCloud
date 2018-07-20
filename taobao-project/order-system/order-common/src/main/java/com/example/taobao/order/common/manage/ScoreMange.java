@@ -1,12 +1,10 @@
 package com.example.taobao.order.common.manage;
 
-import com.alibaba.fastjson.JSON;
 import com.example.base.util.BeanMapper;
 import com.example.taobao.order.common.dao.ScoreMapper;
 import com.example.taobao.order.common.entity.ScoreDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.Tuple;
 
@@ -40,7 +38,6 @@ public class ScoreMange {
     public ScoreDO getScoreByStudentId(Integer studentId) {
 
         throw new RuntimeException("未实现的方法!");
-
     }
 
 

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-inject-test
+server:
+  port: 8080
+
+rpc:
+  scan:  com.example.test.springinjecttest
