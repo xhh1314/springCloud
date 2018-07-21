@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GetMyNameController {
 
-    @RequestMapping(value = "getMyName1")
+    @RequestMapping(value = "getMyName")
     public String getMyName(String name) {
         return "my name is:" + name;
     }

@@ -12,6 +12,10 @@ eureka:
 spring:
   application:
     name: practice-service-b
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 server:
   port: 8081
 
@@ -29,4 +33,4 @@ hystrix:
           enabled: true
         isolation:
           thread:
-            timeoutInMilliseconds: 1000
+            timeoutInMilliseconds: 2000

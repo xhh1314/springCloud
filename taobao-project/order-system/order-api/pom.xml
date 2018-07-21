@@ -12,6 +12,13 @@
 
     <artifactId>taobao-order-api</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.example.taobao.order</groupId>
+            <artifactId>taobao-order-dto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 
 </project>
