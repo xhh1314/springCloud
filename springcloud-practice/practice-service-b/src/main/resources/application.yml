@@ -7,7 +7,7 @@ eureka:
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 10
     lease-expiration-duration-in-seconds: 30
-    instance-id: ${spring.cloud.client.ipAddress}:${server.port}  #配置instanceId显示IP
+
 
 spring:
   application:
@@ -20,7 +20,7 @@ server:
   port: 8081
 
 ribbon:
-  ReadTimeout: 6000
+  ReadTimeout: 2000
   ConnectTimeout: 1000
 feign:
   hystrix:
@@ -34,3 +34,8 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 2000
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: hystrix.stream

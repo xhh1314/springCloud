@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<button onclick="listTest()">测试传list</button>
+
+</body>
+
+<script>
+    function Person(name,age) {
+        this.name=name;
+        this.age=age;
+    }
+    Person.prototype={
+        constructor:Person,
+        getName:function () {
+            console.log("name:"+this.name,"age:"+this.age);
+        }
+    }
+
+    function listTest(){
+        var temp=new Array();
+        temp.push(JSON.stringify(new Person('lihao',22)));
+        temp.push(JSON.stringify(new Person('xrr',32)));
+        temp.push(JSON.stringify(new Person('bb',50)));
+        var jsonString='['+temp.join(',')+']';
+        var jsonStringD=JSON.stringify(jsonString);
+        var jsonObject=JSON.parse(jsonString);
+        var temp1=new Array();
+        temp1.push(new Person('lihao',"content <src>"));
+        temp1.push(new Person('xrr',32));
+        temp1.push(new Person('bb',50));
+        var jsonString1=JSON.stringify(temp1);
+        var jsonString2=JSON.stringify(jsonString1);
+        $.ajax({
+            type:'POST',
+            url:"http://localhost:8080/test1",
+            data:jsonString2,
+            contentType:'application/json',
+            dataType:'json',
+            success:function (data) {
+                var temp1=JSON.stringify(data);
+                console.log(data.name);
+            }
+
+        });
+    }
+
+</script>
+</html>
