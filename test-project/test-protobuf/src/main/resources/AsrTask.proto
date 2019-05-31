@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package testprotobuf;
+option java_package = "com.example.protobuf.testprotobuf";
+
+message AsrTask {
+  int64 taskId = 1;
+  int64 tsiId = 2; //测试数据集id
+  string url = 3;
+  string text = 4;
+  string appKey = 5;
+  int32 dictation = 6;
+  string wsUrl = 7;
+
+
+}
